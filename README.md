@@ -1,1 +1,1 @@
-Detailed lessons about javascript and typescript.
+Detailed lessons about javascript and typescript with tests.
