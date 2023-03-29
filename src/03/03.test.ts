@@ -1,5 +1,5 @@
 import {StudentType} from '../02/02';
-import {addSkill} from './03';
+import {addSkill, makeNotActive} from './03';
 
 let student: StudentType
 
@@ -40,3 +40,11 @@ test('new tech skill should be added', () => {
     expect(student.technologies.length).toBe(4)
     expect(student.technologies[3].title).toBe('JS')
 })
+
+test('student should be not active', () => {
+
+    makeNotActive(student)
+
+    expect(student.isActive).toBe(false)
+})
+
