@@ -23,3 +23,11 @@ export const addMoneyToBudget = (build: GovBuildType, diff: number) => {
 export const repairHouse = (house: HouseType) => {
     house.repaired = true
 }
+
+export const toFireStaff = (build: GovBuildType, diff: number) => {
+    build.staffCount = build.staffCount - diff
+}
+
+export const toHireStaff = (build: GovBuildType, diff: number) => {
+    build.staffCount = build.staffCount + diff
+}
