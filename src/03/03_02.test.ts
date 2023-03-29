@@ -1,5 +1,5 @@
 import {CityType} from '../02/02_02';
-import {addMoneyToBudget} from './03';
+import {addMoneyToBudget, repairHouse} from './03';
 
 let city: CityType;
 

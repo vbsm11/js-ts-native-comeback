@@ -1,5 +1,5 @@
 import {StudentType} from '../02/02';
-import {GovBuildType} from '../02/02_02';
+import {GovBuildType, HouseType} from '../02/02_02';
 
 export const addSkill = (student: StudentType, skill: string) => {
     student.technologies.push({
@@ -18,4 +18,8 @@ export const doesStudentLivesIn = (student: StudentType, city: string) => {
 
 export const addMoneyToBudget = (build: GovBuildType, diff: number) => {
     build.budget = build.budget + diff
+}
+
+export const repairHouse = (house: HouseType) => {
+    house.repaired = true
 }
