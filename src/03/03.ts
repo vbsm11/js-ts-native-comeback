@@ -10,3 +10,7 @@ export const addSkill = (student: StudentType, skill: string) => {
 export const makeNotActive = (student: StudentType) => {
     student.isActive = false
 }
+
+export const doesStudentLivesIn = (student: StudentType, city: string) => {
+    return student.address.city.title === city
+}
