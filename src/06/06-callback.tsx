@@ -1,15 +1,25 @@
-const callback = () => {
-  alert('hey')
-}
+// const callback = () => {
+//   alert('hey')
+// }
 
-window.setTimeout(callback, 1000)
+// window.setTimeout(callback, 1000)
 
-const User = () => {
+
+export const User = () => {
+
+  const deleteUser = () => {
+    alert('user have been deleted')
+  }
+
+  const saveUser = () => {
+    alert('user have been saved')
+  }
+
   return (
       <div>
         User
-        <button>delete</button>
-        <button>save</button>
+        <button onClick={deleteUser}>delete</button>
+        <button onClick={saveUser}>save</button>
       </div>
   )
 }
