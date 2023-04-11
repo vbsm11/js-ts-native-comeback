@@ -1,4 +1,4 @@
-function inreaseAge(u: UserType): void {
+function increaseAge(u: UserType): void {
     u.age++
 }
 
@@ -19,7 +19,7 @@ test('object reference test', () => {
         }
     }
 
-    inreaseAge(user);
+    increaseAge(user);
 
     expect(user.age).toBe(25);
 
@@ -28,4 +28,26 @@ test('object reference test', () => {
     superman.age = 1000;
 
     expect(user.age).toBe(1000);
+})
+
+test('array reference test', () => {
+    let users = [
+        {
+            name: 'Vladimir',
+            age: 24
+        },
+        {
+            name: 'Mama',
+            age: 52
+        }
+    ]
+
+    let admins = users;
+
+    admins.push({
+        name: 'Bandyugan',
+        age: 10
+    })
+
+    expect(users[2]).toEqual({name: 'Bandyugan', age: 10})
 })
