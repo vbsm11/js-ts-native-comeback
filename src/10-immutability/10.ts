@@ -21,5 +21,5 @@ export function moveUser(u: UserWithLaptopType, city: string) {
 }
 
 export function updateUserLaptop(u: UserWithLaptopType, title: string) {
-    return {...u, laptop: {title}}
+    return {...u, laptop: {...u.laptop, title}}
 }
