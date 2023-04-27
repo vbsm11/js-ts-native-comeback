@@ -51,9 +51,9 @@ test('third test', () => {
     }
 
 
-    const movedUser = updateUserLaptop(user, 'Macbook')
+    const updateUser = updateUserLaptop(user, 'Macbook')
 
-    expect(movedUser.laptop.title).toBe('Macbook')
-    expect(movedUser.address).toBe(user.address)
-    expect(movedUser.laptop).not.toBe(user.laptop)
+    expect(updateUser.laptop.title).toBe('Macbook')
+    expect(updateUser.address).toBe(user.address)
+    expect(updateUser.laptop).not.toBe(user.laptop)
 })
