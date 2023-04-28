@@ -2,7 +2,7 @@ import {
     addBooks,
     makeHairstyle,
     moveUser,
-    moveUserToOtherHouse, updateBook,
+    moveUserToOtherHouse, removeBook, updateBook,
     updateUserLaptop,
     UserType,
     UserWithBooksType,
@@ -132,6 +132,30 @@ test('6th test', () => {
     const updateUser = updateBook(user, 'js', 'ts')
 
     expect(updateUser.books[2]).toBe('ts')
+    expect(updateUser.address).toBe(user.address)
+    expect(updateUser.laptop).toBe(user.laptop)
+    expect(updateUser.books).not.toBe(user.books)
+})
+
+test('7th test', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Alex',
+        hair: 32,
+        address: {
+            city: 'Moscow',
+            house: 37
+        },
+        laptop: {
+            title: 'Acer'
+        },
+        books: ['html', 'css', 'js', 'react']
+    }
+
+
+    const updateUser = removeBook(user, 'js')
+
+    expect(updateUser.books[2]).toBe('react')
+    expect(updateUser.books.length).toBe(3)
     expect(updateUser.address).toBe(user.address)
     expect(updateUser.laptop).toBe(user.laptop)
     expect(updateUser.books).not.toBe(user.books)
