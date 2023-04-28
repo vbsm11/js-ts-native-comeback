@@ -2,7 +2,7 @@ import {
     addBooks,
     makeHairstyle,
     moveUser,
-    moveUserToOtherHouse,
+    moveUserToOtherHouse, updateBook,
     updateUserLaptop,
     UserType,
     UserWithBooksType,
@@ -108,7 +108,30 @@ test('5th test', () => {
     const updateUser = addBooks(user, ['ts', 'rest api'])
 
     expect(updateUser.books[4]).toBe('ts')
-    expect(updateUser.books[4]).toBe('rest api')
+    expect(updateUser.books[5]).toBe('rest api')
+    expect(updateUser.address).toBe(user.address)
+    expect(updateUser.laptop).toBe(user.laptop)
+    expect(updateUser.books).not.toBe(user.books)
+})
+
+test('6th test', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Alex',
+        hair: 32,
+        address: {
+            city: 'Moscow',
+            house: 37
+        },
+        laptop: {
+            title: 'Acer'
+        },
+        books: ['html', 'css', 'js', 'react']
+    }
+
+
+    const updateUser = updateBook(user, 'js', 'ts')
+
+    expect(updateUser.books[2]).toBe('ts')
     expect(updateUser.address).toBe(user.address)
     expect(updateUser.laptop).toBe(user.laptop)
     expect(updateUser.books).not.toBe(user.books)

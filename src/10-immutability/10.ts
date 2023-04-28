@@ -42,3 +42,9 @@ export function addBooks(u: UserWithBooksType & UserWithLaptopType, add: Array<s
         books: u.books.concat(add)
     }
 }
+
+export function updateBook(u: UserWithBooksType & UserWithLaptopType, prevTitle: string, newTitle: string) {
+    return {...u,
+        books: u.books.map(b => b === prevTitle? newTitle: b)
+    }
+}
