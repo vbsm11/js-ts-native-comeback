@@ -1,4 +1,12 @@
-import {makeHairstyle, moveUser, updateUserLaptop, UserType, UserWithLaptopType} from './10';
+import {
+    makeHairstyle,
+    moveUser,
+    moveUserToOtherHouse,
+    updateUserLaptop,
+    UserType,
+    UserWithBooksType,
+    UserWithLaptopType
+} from './10';
 
 test('first test', () => {
     let user: UserType = {
@@ -56,4 +64,27 @@ test('third test', () => {
     expect(updateUser.laptop.title).toBe('Macbook')
     expect(updateUser.address).toBe(user.address)
     expect(updateUser.laptop).not.toBe(user.laptop)
+})
+
+test('fourth test', () => {
+    let user: UserWithLaptopType & UserWithBooksType = {
+        name: 'Alex',
+        hair: 32,
+        address: {
+            city: 'Moscow',
+            house: 37
+        },
+        laptop: {
+            title: 'Acer'
+        },
+        books: ['html', 'css', 'js', 'react']
+    }
+
+
+    const updateUser = moveUserToOtherHouse(user, 99)
+
+    expect(updateUser.address.house).toBe(99)
+    expect(updateUser.address).not.toBe(user.address)
+    expect(updateUser.laptop).toBe(user.laptop)
+    expect(updateUser.books).toBe(user.books)
 })
