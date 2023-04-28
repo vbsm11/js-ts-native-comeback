@@ -2,7 +2,7 @@ import {
     addBooks, addCompany,
     makeHairstyle,
     moveUser,
-    moveUserToOtherHouse, removeBook, updateBook,
+    moveUserToOtherHouse, removeBook, updateBook, updateCompanyTitle,
     updateUserLaptop,
     UserType,
     UserWithBooksType,
@@ -188,3 +188,29 @@ test('8th test', () => {
     expect(updateUser.laptop).toBe(user.laptop)
 })
 
+test('9th test', () => {
+    let user: UserWithLaptopType & WithCompaniesType = {
+        name: 'Alex',
+        hair: 32,
+        address: {
+            city: 'Moscow',
+            house: 37
+        },
+        laptop: {
+            title: 'Acer'
+        },
+        companies: [
+            {id: 1, title: 'KTZ'},
+            {id: 2, title: 'Term'},
+            {id: 3, title: 'BHZ'}
+        ]
+    }
+
+
+    const updateUser = updateCompanyTitle(user, 2, 'Termotron')
+
+    expect(updateUser.companies[1].title).toBe('Termotron')
+    expect(updateUser.companies).not.toBe(user.companies)
+    expect(updateUser.address).toBe(user.address)
+    expect(updateUser.laptop).toBe(user.laptop)
+})

@@ -67,3 +67,9 @@ export function addCompany(u: UserWithLaptopType & WithCompaniesType, id: number
         ]
     }
 }
+
+export function updateCompanyTitle(u: UserWithLaptopType & WithCompaniesType, id: number, newTitle: string) {
+    return {...u,
+        companies: u.companies.map(c => c.id === id? {...c, title: newTitle}: c)
+    }
+}
