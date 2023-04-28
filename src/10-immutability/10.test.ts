@@ -1,8 +1,8 @@
 import {
-    addBooks, addCompany,
+    addBooks, addCompany, CompaniesType,
     makeHairstyle,
     moveUser,
-    moveUserToOtherHouse, removeBook, updateBook, updateCompanyTitle,
+    moveUserToOtherHouse, removeBook, updateBook, updateCompanyTitle, updateCompanyTitle2,
     updateUserLaptop,
     UserType,
     UserWithBooksType,
@@ -184,7 +184,7 @@ test('8th test', () => {
 
     expect(updateUser.companies[3].title).toBe('google')
     expect(updateUser.companies.length).toBe(4)
-        expect(updateUser.address).toBe(user.address)
+    expect(updateUser.address).toBe(user.address)
     expect(updateUser.laptop).toBe(user.laptop)
 })
 
@@ -213,4 +213,33 @@ test('9th test', () => {
     expect(updateUser.companies).not.toBe(user.companies)
     expect(updateUser.address).toBe(user.address)
     expect(updateUser.laptop).toBe(user.laptop)
+})
+
+test('10th test', () => {
+    let user: UserWithLaptopType = {
+        name: 'Alex',
+        hair: 32,
+        address: {
+            city: 'Moscow',
+            house: 37
+        },
+        laptop: {
+            title: 'Acer'
+        }
+    }
+
+    let companies: CompaniesType = {
+        'Alex': [
+            {id: 1, title: 'KTZ'},
+            {id: 2, title: 'Term'},
+            {id: 3, title: 'BHZ'}
+        ],
+        'Artem': [
+            {id: 3, title: 'BHZ'}
+        ]
+    }
+
+    const updatedCompanies = updateCompanyTitle2(companies, 'Alex', 2, 'Termotron')
+
+    expect(updatedCompanies['Alex'][1].title).toBe('Termotron')
 })

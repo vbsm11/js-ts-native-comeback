@@ -1,7 +1,7 @@
 export type UserType = {
     name: string
     hair: number
-    address: {city: string, house?: number}
+    address: { city: string, house?: number }
 }
 
 export type LaptopType = {
@@ -17,7 +17,11 @@ export type UserWithBooksType = UserType & {
 }
 
 export type WithCompaniesType = {
-    companies: Array<{id: number, title: string}>
+    companies: Array<{ id: number, title: string }>
+}
+
+export type CompaniesType = {
+    [userName: string]: Array<{ id: number, title: string }>
 }
 
 export function makeHairstyle(u: UserType, power: number) {
@@ -33,34 +37,39 @@ export function updateUserLaptop(u: UserWithLaptopType, title: string) {
 }
 
 export function moveUserToOtherHouse(u: UserWithBooksType & UserWithLaptopType, house: number) {
-    return {...u,
+    return {
+        ...u,
         address: {
-        ...u.address,
+            ...u.address,
             house
         }
     }
 }
 
 export function addBooks(u: UserWithBooksType & UserWithLaptopType, add: Array<string>) {
-    return {...u,
+    return {
+        ...u,
         books: u.books.concat(add)
     }
 }
 
 export function updateBook(u: UserWithBooksType & UserWithLaptopType, prevTitle: string, newTitle: string) {
-    return {...u,
-        books: u.books.map(b => b === prevTitle? newTitle: b)
+    return {
+        ...u,
+        books: u.books.map(b => b === prevTitle ? newTitle : b)
     }
 }
 
 export function removeBook(u: UserWithBooksType & UserWithLaptopType, delTitle: string) {
-    return {...u,
+    return {
+        ...u,
         books: u.books.filter(b => b != delTitle)
     }
 }
 
 export function addCompany(u: UserWithLaptopType & WithCompaniesType, id: number, title: string) {
-    return {...u,
+    return {
+        ...u,
         companies: [
             ...u.companies,
             {id, title}
@@ -69,7 +78,15 @@ export function addCompany(u: UserWithLaptopType & WithCompaniesType, id: number
 }
 
 export function updateCompanyTitle(u: UserWithLaptopType & WithCompaniesType, id: number, newTitle: string) {
-    return {...u,
-        companies: u.companies.map(c => c.id === id? {...c, title: newTitle}: c)
+    return {
+        ...u,
+        companies: u.companies.map(c => c.id === id ? {...c, title: newTitle} : c)
+    }
+}
+
+export function updateCompanyTitle2(state: CompaniesType, userName: string, id: number, newTitle: string) {
+    return {
+        ...state,
+        [userName]: state[userName].map(c => c.id === id? {...c, title: newTitle}: c)
     }
 }
