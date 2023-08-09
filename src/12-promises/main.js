@@ -30,7 +30,20 @@ promise1
 
 // у объекта promise может быть 3 состояния:
 // pending - загрузка, ожидание
-// fullfiled(resolved) - выполнено
+// fulfilled(resolved) - выполнено
 // rejected - ошибка
 // если после статуса pending статус преобразовался в один из двух, он уже не изменится
 
+
+// под капотом промис создается с помощью класса Promise
+// у класса Promise есть метод all, который позволяет дождаться, пока выполнятся все промисы, и после этого выполнить какое-то действие
+
+const otherPromise = Promise.all([promise1, promise2])
+
+otherPromise
+    .then((results) => { // results - массив результатов в порядке передачи промисов в параметры
+        console.log(results)
+    })
+    .catch(() => { // если хоть один промис не зарезолвился, попадаем в catch
+        console.log('initialization failed, try later')
+    })
