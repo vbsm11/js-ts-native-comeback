@@ -47,3 +47,13 @@ otherPromise
     .catch(() => { // если хоть один промис не зарезолвился, попадаем в catch
         console.log('initialization failed, try later')
     })
+
+// Промис, созданный при помощи allSettled всегда зарезолвится
+// результатом будет массив объектов со свойствами статус промиса, значение и причина (почему промис зареджектился)
+const otherPromise2 = Promise.allSettled([promise1, promise2])
+
+otherPromise2
+    .then((results) => {
+        console.log(results[0].status)
+        console.log(results[1].value)
+    })
