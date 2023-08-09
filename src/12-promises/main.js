@@ -57,3 +57,17 @@ otherPromise2
         console.log(results[0].status)
         console.log(results[1].value)
     })
+
+
+// у класса Promise также есть 2 метода, позволяющих создавать промисы,
+// которые по умолчанию зарезолвились или зареджектились
+
+const resolvedPromise = Promise.resolve([{}])
+resolvedPromise
+    .then(data => console.log(data))
+    .catch(error => console.warn(error))
+
+const rejectedPromise = Promise.reject({message: 'Some error'})
+rejectedPromise
+    .then(data => console.log(data))
+    .catch(error => console.warn(error))
