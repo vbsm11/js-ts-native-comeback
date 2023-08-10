@@ -1,4 +1,5 @@
 import axios from "axios";
+import {log} from "util";
 
 // promise - обект с методами
 
@@ -99,7 +100,6 @@ const makeGoogleRequest = () => {
 makeGoogleRequest().then(data => console.log(data))
 
 
-
 // ASYNC, AWAIT
 // await мы можем использовать только внутри асинхронной функции
 // асинхронную ф-цию мы можем создать при помощи async
@@ -111,3 +111,57 @@ async function run() {
 }
 
 run()
+
+
+// создание промисов
+
+function getNumber() {
+    const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(Math.random())
+        }, 2000)
+    })
+    return promise
+}
+
+getNumber().then(n => console.log(n))
+
+
+// сохранение в localStorage при помощи промиса (аналогия сохранения данных на сервере)
+// например, чтобы избежать остановки приложения в случае его переполнения при синхронном сохранении
+
+const repo = {
+    save(data) { // синхронное сохранение
+        try {
+            localStorage.setItem('key', JSON.stringify(data))
+        } catch (error) {
+            return false
+        }
+        return true
+    },
+    saveAsync(data) { // асинхронное сохранение
+        const pr = new Promise((resolve, reject) => {
+            try {
+                localStorage.setItem('keyAsync', JSON.stringify(data))
+                resolve()
+            } catch (error) {
+                reject(error)
+            }
+            return pr
+        })
+    }
+}
+
+repo.save({name: 'Dmitriy'}) // синхронная версия, зависнет при проблемах с сохранением
+console.log('SAVED')
+
+
+repo.saveAsync({name: 'Vladimir'}) // асинхронная версия, приложение будет продолжать работать, дожидаясь резолва/реджекта промиса
+    .then(() => console.log('SAVED'))
+    .catch(error => console.log('NOT SAVED ' + error))
+
+
+const runSaveAsync = async () => { // асинхронное сохранение при помощи async, await (аналогично then)
+    await repo.saveAsync({name: 'Vladimir'})
+    console.log('SAVED')
+}
