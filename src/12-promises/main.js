@@ -97,3 +97,17 @@ const makeGoogleRequest = () => {
 }
 
 makeGoogleRequest().then(data => console.log(data))
+
+
+
+// ASYNC, AWAIT
+// await мы можем использовать только внутри асинхронной функции
+// асинхронную ф-цию мы можем создать при помощи async
+
+async function run() {
+    let res = await axios.get('https://google.com') // при помощи await в res придет то, чем зарезолвится промис
+    console.log(res)
+// await в какой-то мере альтернатива then
+}
+
+run()
