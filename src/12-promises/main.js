@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // promise - обект с методами
 
 const promise1 = axios.get('https://google.com')
@@ -71,3 +73,27 @@ const rejectedPromise = Promise.reject({message: 'Some error'})
 rejectedPromise
     .then(data => console.log(data))
     .catch(error => console.warn(error))
+
+
+// ЦЕПОЧКА ПРОМИСОВ
+// КАДЖДЫЙ THEN ВОЗВРАЩАЕТ НОВЫЙ ПРОМИС, КОТОРОМУ В DATA ПРИХОДИТ ТО, ЧЕМ ЗАРЕЗОЛВИЛСЯ РОДИТЕЛЬСКИЙ ПРОМИС (ИЛИ ЧТО БЫЛО В RETURN ПРЕДЫДУЩЕГО THEN)
+// ЕСЛИ ВНУТРИ ОДНОГО ИЗ THEN В ЦЕПОЧКЕ МЫ ВОЗВРАЩАЕМ ПРОМИС, ТО В СЛЕДУЮЩИЙ THEN ПРИДЕТ ТО, ЧЕМ ОН ЗАРЕЗОЛВИЛСЯ
+
+const pr1 = new Promise()
+
+const pr1_1 = pr1.then(() => {
+})
+
+axios.get('https://google.com')
+    .then(res => res.data)
+    .then(data => console.log(data))
+
+const makeGoogleRequest = () => {
+    // const pr = axios.get('https://google.com')
+    // const pr2 = pr.then(res => res.data)
+    // return pr2
+    return axios.get('https://google.com')
+        .then(res => res.data)
+}
+
+makeGoogleRequest().then(data => console.log(data))
