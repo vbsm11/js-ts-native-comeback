@@ -9,3 +9,19 @@ function DeleteUserAction(userId) {
 
 const action1 = new DeleteUserAction('211242') // создаем объект через оператор new
 console.log(action1)
+
+////////////////////////////////////////////////////////////////////////////////
+
+function User(name, site, dob) {
+    this.name = name;
+    this.site = 'it-incubator.ru';
+    this.dateOfBirth = dob
+}
+
+User.prototype.hello = function() {
+    console.log(`I am ${this.name} from ${this.site}`)
+} // добавляем метод prototype, чтобы при каждом вызове ф-ции конструктора не метод(функция) не создавался заново каждый раз
+
+const u1 = new User('Vova', 'it-incubator.ru', new Date(1998, 2, 1))
+
+u1.hello()
