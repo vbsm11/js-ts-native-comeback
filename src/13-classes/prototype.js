@@ -14,7 +14,7 @@ console.log(action1)
 
 function User(name, site, dob) {
     this.name = name;
-    this.site = 'it-incubator.ru';
+    this.site = site;
     this.dateOfBirth = dob
 }
 
