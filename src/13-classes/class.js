@@ -36,6 +36,31 @@ u2.hello()
 
 console.log(u1.hello === User.prototype.hello) // TRUE - СМОТРИ prototype.js
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// наследование, расширение классов
+
+class Coder extends User {
+    constructor(name, site, dob, tech) { // расширяем метод constructor, для этого в него передаем все атрибуты из исходного класса и новые
+        super(name, site, dob) // метод конструктор наследуемого класса
+        this.tech = tech // присваиваем новое свойство
+    }
+
+    code() {
+        console.log(`hello, my name is ${this.#name}, here is ${this.tech} my code: const sum = (a, b) => a+b`)
+    }
+
+    hello() {
+        super.hello(); // метод hello наследуемого класса
+        console.log('go away')
+    }
+}
+
+const coder1 = new Coder('Kolya', 'moscow.ru', new Date(1998, 12, 12))
+
+coder1.hello() // нам доступны методы из класса User
+coder1.code() // и так же новые методы
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
